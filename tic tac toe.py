@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 
-#  window
+
 root = Tk()
 root.title("Tic Tac Toe")
 root.geometry("300x320")
@@ -10,7 +10,7 @@ root.geometry("300x320")
 p = "X"
 bs = []
 
-# Check winner
+
 def c_w():
     for r in range(3):
         if bs[r][0]["text"] == bs[r][1]["text"] == bs[r][2]["text"] != "":
@@ -28,7 +28,7 @@ def c_w():
 
     return False
 
-# Button click
+
 def click(r, c):
     global p
 
@@ -45,7 +45,7 @@ def click(r, c):
 
         p = "O" if p == "X" else "X"
 
-# Reset board
+
 def reset():
     global p
     p = "X"
@@ -53,7 +53,7 @@ def reset():
         for j in range(3):
             bs[i][j]["text"] = ""
 
-# button
+
 for i in range(3):
     r = []
     for j in range(3):
