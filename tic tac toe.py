@@ -6,7 +6,7 @@ root = Tk()
 root.title("Tic Tac Toe")
 root.geometry("300x320")
 
-# Variables
+
 p = "X"
 bs = []
 
