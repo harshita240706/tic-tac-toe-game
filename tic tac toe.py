@@ -1,67 +1,67 @@
 from tkinter import *
 from tkinter import messagebox
 
-
+#  window
 root = Tk()
 root.title("Tic Tac Toe")
 root.geometry("300x320")
 
 # Variables
-player = "X"
-buttons = []
+p = "X"
+bs = []
 
 # Check winner
-def check_winner():
-    for row in range(3):
-        if buttons[row][0]["text"] == buttons[row][1]["text"] == buttons[row][2]["text"] != "":
+def c_w():
+    for r in range(3):
+        if bs[r][0]["text"] == bs[r][1]["text"] == bs[r][2]["text"] != "":
             return True
 
-    for col in range(3):
-        if buttons[0][col]["text"] == buttons[1][col]["text"] == buttons[2][col]["text"] != "":
+    for c in range(3):
+        if bs[0][c]["text"] == bs[1][c]["text"] == bs[2][c]["text"] != "":
             return True
 
-    if buttons[0][0]["text"] == buttons[1][1]["text"] == buttons[2][2]["text"] != "":
+    if bs[0][0]["text"] == bs[1][1]["text"] == bs[2][2]["text"] != "":
         return True
 
-    if buttons[0][2]["text"] == buttons[1][1]["text"] == buttons[2][0]["text"] != "":
+    if bs[0][2]["text"] == bs[1][1]["text"] == bs[2][0]["text"] != "":
         return True
 
     return False
 
 # Button click
-def click(row, col):
-    global player
+def click(r, c):
+    global p
 
-    if buttons[row][col]["text"] == "":
-        buttons[row][col]["text"] = player
+    if bs[r][c]["text"] == "":
+        bs[r][c]["text"] = p
 
-        if check_winner():
-            messagebox.showinfo("Winner", f"Player {player} wins!")
+        if c_w():
+            messagebox.showinfo("Winner", f"Player {p} wins!")
             reset()
 
-        elif all(buttons[i][j]["text"] != "" for i in range(3) for j in range(3)):
+        elif all(bs[i][j]["text"] != "" for i in range(3) for j in range(3)):
             messagebox.showinfo("Draw", "It's a Draw!")
             reset()
 
-        player = "O" if player == "X" else "X"
+        p = "O" if p == "X" else "X"
 
 # Reset board
 def reset():
-    global player
-    player = "X"
+    global p
+    p = "X"
     for i in range(3):
         for j in range(3):
-            buttons[i][j]["text"] = ""
+            bs[i][j]["text"] = ""
 
-# Create buttons
+# button
 for i in range(3):
-    row = []
+    r = []
     for j in range(3):
         btn = Button(root, text="", font=("Arial", 20),
                      width=5, height=2,
                      command=lambda r=i, c=j: click(r, c))
         btn.grid(row=i, column=j)
-        row.append(btn)
-    buttons.append(row)
+        r.append(btn)
+    bs.append(r)
 
 root.mainloop()
